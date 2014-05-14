@@ -83,6 +83,14 @@ a:hover, a:active, a:focus {
 	line-height: 0px;
 }
 
+#spinner{
+	background:url("http://www.aveva.com/Images/ajax-loader.gif")
+	no-repeat scroll center center #FFF;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
   div.spinner div {
     width: 12%;
     height: 26%;
