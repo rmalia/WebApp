@@ -25,7 +25,8 @@ var target = document.getElementById('div body');
 var spinner = new Spinner(target);
 
 var oReq = new XMLHttpRequest();
-var url = "";
+var url = "www.google.com";
+var response;
 
 oReq.open("GET", url, true);
 oReq.onreadystatechange = onStateChange;
@@ -37,7 +38,9 @@ function onStateChange(){
 	if(oReq.readyState == 4){
 		spinner.stop();
 		if(oReq.status == 200){
-			respone = oReq.responseText;
+			response = oReq.responseText;
 		}
 	}
 }
+
+document.write(response);
