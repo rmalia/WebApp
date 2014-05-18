@@ -21,7 +21,7 @@ button {
 body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
-    background: #febf01;
+    background: #333;
     color: #4d4d4d;
     width: 550px;
     margin: 0 auto;
@@ -73,6 +73,7 @@ body {
     font-weight: bold;
     text-align: center;
     color: #888;
+	text-shadow: 5px 5px 5px #000;
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     -ms-text-rendering: optimizeLegibility;
@@ -261,11 +262,12 @@ label[for='toggle-all'] {
     height: 20px;
 	color: #000;
 	margin: auto 0;
-	-webkit-transition: none;
-    -moz-transition: none;
-    -ms-transition: none;
-    -o-transition: none;
-    transition: none;
+	text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0px 0px 20px;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 #shopping-list li .minus {
@@ -277,20 +279,26 @@ label[for='toggle-all'] {
     width: 20px;
     height: 20px;
 	color: #000;
-	margin: auto 0;
-	-webkit-transition: none;
-    -moz-transition: none;
-    -ms-transition: none;
-    -o-transition: none;
-    transition: none;
+	margin: auto 0;	
+	text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0px 0px 20px;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 #counter {
     text-align: center;
 	display: inline-block;
     padding: 5px;
-    margin: 15px 15px 15px 60px;
+    margin: 8px 8px 8px 60px;
 	line-height: 1.2;
+	-webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
 
@@ -306,9 +314,13 @@ label[for='toggle-all'] {
     transition: color 0.4s;
 }
 
-#shopping-list li.completed label {
+#shopping-list li.completed label.item-content {
     color: #a9a9a9;
     text-decoration: line-through;
+}
+
+#shopping-list li.completed label.item-quantity{
+    color: #a9a9a9;
 }
 
 #shopping-list li .item-destroy {
@@ -400,7 +412,7 @@ label[for='toggle-all'] {
 }
 
 #filters li a {
-    color: #83756f;
+    color: #1F3A6A;
     margin: 2px;
     text-decoration: none;
 }
