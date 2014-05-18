@@ -19,7 +19,7 @@ $(function() {
   var ShoppingItem = Parse.Object.extend("ShoppingItem", {
     // Default attributes for the todo.
     defaults: {
-      content: "empty list...",
+      content: "empty entry...",
       done: false,
 	  quantity: 0
     },
