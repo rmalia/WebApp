@@ -21,7 +21,7 @@ button {
 body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
-    background: #eeeeee url('../images/bg.png');
+    background: #febf01;
     color: #4d4d4d;
     width: 550px;
     margin: 0 auto;
@@ -238,8 +238,7 @@ label[for='toggle-all'] {
 #shopping-list li .toggle:after {
     font-size: 18px;
     content: '✔';
-    line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-    /*font-size: 20px;*/
+    line-height: 43px; 
     color: #d9d9d9;
     text-shadow: 0 -1px 0 #bfbfbf;
 }
@@ -254,15 +253,36 @@ label[for='toggle-all'] {
 
 #shopping-list li .plus {
 	text-align: center;
+	position: relative;
+	font-size: 18px;
+	top: 0;
+	bottom: 0;
     width: 20px;
     height: 20px;
-    
+	color: #000;
+	margin: auto 0;
+	-webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
 #shopping-list li .minus {
 	text-align: center;
+	position: relative;
+	font-size: 18px;
+	top: 0;
+	bottom: 0;
     width: 20px;
     height: 20px;
+	color: #000;
+	margin: auto 0;
+	-webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
 #counter {
@@ -270,6 +290,7 @@ label[for='toggle-all'] {
 	display: inline-block;
     padding: 5px;
     margin: 15px 15px 15px 60px;
+	line-height: 1.2;
 }
 
 
