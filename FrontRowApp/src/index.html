@@ -79,13 +79,13 @@
       <li class="<%= done ? 'completed' : '' %>">
 	<div class="view">
 	  <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
-	  <form class = 'counter'>  
+	  <div id = 'counter'>  
 	  	<input type= "button" value = "-" class="minus"/>
 	  	<label class="item-quantity"><%= quantity %></label>
 	  	<input type = "button" value ="+" class="plus"/>
 	  	<label class="item-content"><%= content %></label>
 	  	<button class="item-destroy"></button>
-	  </form>
+	  </div>
 	</div>
 	<input class="edit" value="<%= content %>">
       </li>

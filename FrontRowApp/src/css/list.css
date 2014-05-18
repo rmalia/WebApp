@@ -267,13 +267,15 @@ label[for='toggle-all'] {
 
 #counter {
     text-align: center;
+	display: inline-block;
     padding: 5px;
-    margin: 2%;
+    margin: 15px 15px 15px 60px;
 }
 
-#shopping-list li label {
+
+#shopping-list li label.item-content {
     word-break: break-word;
-    margin: 15px 15px 15px 60px;
+    margin: 0px 0px 0px 60px;
     display: inline-block;
     line-height: 1.2;
     -webkit-transition: color 0.4s;
