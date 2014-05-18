@@ -239,7 +239,7 @@ label[for='toggle-all'] {
     font-size: 18px;
     content: '✔';
     line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-    font-size: 20px;
+    /*font-size: 20px;*/
     color: #d9d9d9;
     text-shadow: 0 -1px 0 #bfbfbf;
 }
@@ -251,54 +251,24 @@ label[for='toggle-all'] {
     position: relative;
 }
 
-#shopping-list li .plus{
+
+#shopping-list li .plus {
 	text-align: center;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    border: none; /* Mobile Safari */
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
+    width: 20px;
+    height: 20px;
+    
 }
 
-#shopping-list li .plus:after {
-	font-size: 18px;
-	font-weight: 200; /* check this */
-	content: '+';
-	line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-    font-size: 20px;
-    color: #d9d9d9;
-    text-shadow: 0 -1px 0 #bfbfbf;
-}
-
-#shopping-list li .minus{
+#shopping-list li .minus {
 	text-align: center;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    border: none; /* Mobile Safari */
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
+    width: 20px;
+    height: 20px;
 }
 
-#shopping-list li .minus:before {
-	font-size: 18px;
-	font-weight: 200; /* check this */
-	content: '-';
-	line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-    font-size: 20px;
-    color: #d9d9d9;
-    text-shadow: 0 -1px 0 #bfbfbf;
+#counter {
+    text-align: center;
+    padding: 5px;
+    margin: 2%;
 }
 
 #shopping-list li label {
