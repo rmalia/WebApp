@@ -21,24 +21,24 @@ $(function() {
 	  quantity: 0
     },
 
-    // Ensure that each todo created has `content`.
+    // Ensure that each item created has `content`.
     initialize: function() {
       if (!this.get("content")) {
         this.set({"content": this.defaults.content});
       }
     },
 
-	// increment quantity
+	// increment quantity of the item
     increment: function() {
 		var inc = this.get("quantity");
 		inc++;
-		//this.set({"quantity": inc});
 		this.save({"quantity": inc});
 	},
 		
-	//decrement quantity
+	//decrement quantity of the item
 	decrement: function(){
 		var dec = this.get("quantity");
+		// no negatives
 		if(dec > 0){
 			dec--;
 			this.save({"quantity": dec});
@@ -68,7 +68,7 @@ $(function() {
 
     // Filter down the list of all items that are gotten.
     done: function() {
-      return this.filter(function(todo){ return todo.get('done'); });
+      return this.filter(function(shopitem){ return shopitem.get('done'); });
     },
 
     // Filter down the list to only items that are not gotten
@@ -83,8 +83,8 @@ $(function() {
     },
 
     // Sort by their original insertion order.
-    comparator: function(todo) {
-      return todo.get('order');
+    comparator: function(shopitem) {
+      return shopitem.get('order');
     }
 
   });
@@ -117,7 +117,7 @@ $(function() {
       this.model.bind('destroy', this.remove);
     },
 
-    // Re-render the contents of the todo item.
+    // Re-render the contents of item.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
@@ -135,7 +135,7 @@ $(function() {
       this.input.focus();
     },
 
-    // Close the `"editing"` mode, saving changes to the todo.
+    // Close the `"editing"` mode, saving changes.
     close: function() {
       this.model.save({content: this.input.val()});
       $(this.el).removeClass("editing");
@@ -166,7 +166,7 @@ $(function() {
   // The Application
   // ---------------
 
-  // The main view that lets a user manage their todo items
+  // The main view that lets a user manage their items
   var ManageListView = Parse.View.extend({
 
     // Our template for the line of statistics at the bottom of the app.
@@ -191,16 +191,16 @@ $(function() {
 
       _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
 
-      // Main todo management template
+      // Main management template
       this.$el.html(_.template($("#manage-list-template").html()));
       
       this.input = this.$("#new-item");
       this.allCheckbox = this.$("#toggle-all")[0];
 
-      // Create our collection of Todos
+      // Create our collection of shopping items
       this.list = new ShoppingItemList;
 
-      // Setup the query for the collection to look for todos from the current user
+      // Setup the query for the collection to look for the list from the current user
       this.list.query = new Parse.Query(ShoppingItem);
       this.list.query.equalTo("user", Parse.User.current());
         
@@ -208,7 +208,7 @@ $(function() {
       this.list.bind('reset',   this.addAll);
       this.list.bind('all',     this.render);
 
-      // Fetch all the todo items for this user
+      // Fetch all the items for this user
       this.list.fetch();
 
       state.on("change", this.filter, this);
@@ -247,6 +247,7 @@ $(function() {
       Parse.history.navigate(filterValue);
     },
 
+	// filter the viewable items based on input
     filter: function() {
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
@@ -260,27 +261,27 @@ $(function() {
       }
     },
 
-    // Resets the filters to display all todos
+    // Resets the filters to display all items
     resetFilters: function() {
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#all").addClass("selected");
       this.addAll();
     },
 
-    // Add a single todo item to the list by creating a view for it, and
+    // Add a single item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
-    addOne: function(todo) {
-      var view = new ShoppingItemView({model: todo});
+    addOne: function(shopitem) {
+      var view = new ShoppingItemView({model: shopitem});
       this.$("#shopping-list").append(view.render().el);
     },
 
-    // Add all items in the Todos collection at once.
+    // Add all items in the collection at once.
     addAll: function(collection, filter) {
       this.$("#shopping-list").html("");
       this.list.each(this.addOne);
     },
 
-    // Only adds some todos, based on a filtering function that is passed in
+    // Only adds some items, based on a filtering function that is passed in
     addSome: function(filter) {
       var self = this;
       this.$("#shopping-list").html("");
@@ -304,15 +305,16 @@ $(function() {
       this.resetFilters();
     },
 
-    // Clear all done todo items, destroying their models.
+    // Clear all done items, destroying their models.
     clearCompleted: function() {
-      _.each(this.list.done(), function(todo){ todo.destroy(); });
+      _.each(this.list.done(), function(shopitem){ shopitem.destroy(); });
       return false;
     },
 
+	// make everything checks
     toggleAllComplete: function () {
       var done = this.allCheckbox.checked;
-      this.list.each(function (todo) { todo.save({'done': done}); });
+      this.list.each(function (shopitem) { shopitem.save({'done': done}); });
     }
   });
 
@@ -329,6 +331,7 @@ $(function() {
       this.render();
     },
 
+	// Login
     logIn: function(e) {
       var self = this;
       var username = this.$("#login-username").val();
@@ -352,6 +355,7 @@ $(function() {
       return false;
     },
 
+	// Sign up
     signUp: function(e) {
       var self = this;
       var username = this.$("#signup-username").val();
@@ -410,14 +414,17 @@ $(function() {
     initialize: function(options) {
     },
 
+	// set filter to all
     all: function() {
       state.set({ filter: "all" });
     },
 
+	// set filter to remaining items
     active: function() {
       state.set({ filter: "active" });
     },
 
+	// set filter to already gotten items
     completed: function() {
       state.set({ filter: "completed" });
     }
