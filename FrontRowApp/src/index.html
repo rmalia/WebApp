@@ -96,16 +96,16 @@
 	<span id="item-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
 	<ul id="filters">
 	  <li>
-	    <a href="javascript:void(0)" id="all" class="selected">All</a>
+	    <a href="javascript:void(0)" id="all" class="selected">All Items</a>
 	  </li>
 	  <li>
-	    <a href="javascript:void(0)" id="active">Active</a>
+	    <a href="javascript:void(0)" id="active">Remaining</a>
 	  </li>
 	  <li>
-	    <a href="javascript:void(0)" id="completed">Completed</a>
+	    <a href="javascript:void(0)" id="completed">Gotten</a>
 	  </li>
 	</ul>
-	<button id="clear-completed">Clear completed (<%= done %>)</button>
+	<button id="clear-completed">Clear Checked Items (<%= done %>)</button>
       </footer>
     </script>
 

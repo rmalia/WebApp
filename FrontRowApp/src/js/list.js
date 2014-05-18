@@ -1,6 +1,3 @@
-// An example Parse.js Backbone application based on the todo app by
-// [Jérôme Gravel-Niquet](http://jgn.me/). This demo uses Parse to persist
-// the todo items and provide user authentication and sessions.
 
 $(function() {
 
@@ -17,7 +14,7 @@ $(function() {
 
   // Our basic ShoppingItem model has `content`, `order`, and `done` attributes.
   var ShoppingItem = Parse.Object.extend("ShoppingItem", {
-    // Default attributes for the todo.
+    // Default attributes for the item.
     defaults: {
       content: "empty entry...",
       done: false,
@@ -48,7 +45,7 @@ $(function() {
 		}
 	},
 	
-    // Toggle the `done` state of this todo item.
+    // Toggle the `done` state of this item.
     toggle: function() {
       this.save({done: !this.get("done")});
     }
@@ -69,24 +66,23 @@ $(function() {
     // Reference to this collection's model.
     model: ShoppingItem,
 
-    // Filter down the list of all todo items that are finished.
+    // Filter down the list of all items that are gotten.
     done: function() {
       return this.filter(function(todo){ return todo.get('done'); });
     },
 
-    // Filter down the list to only todo items that are still not finished.
+    // Filter down the list to only items that are not gotten
     remaining: function() {
       return this.without.apply(this, this.done());
     },
 
-    // We keep the Todos in sequential order, despite being saved by unordered
-    // GUID in the database. This generates the next order number for new items.
+    //Order generator
     nextOrder: function() {
       if (!this.length) return 1;
       return this.last().get('order') + 1;
     },
 
-    // Todos are sorted by their original insertion order.
+    // Sort by their original insertion order.
     comparator: function(todo) {
       return todo.get('order');
     }
@@ -94,12 +90,8 @@ $(function() {
   });
 
   // ShoppingItem Item View
-  // --------------
 
-  // The DOM element for a todo item...
   var ShoppingItemView = Parse.View.extend({
-
-    //... is a list tag.
     tagName:  "li",
 
     // Cache the template function for a single item.
